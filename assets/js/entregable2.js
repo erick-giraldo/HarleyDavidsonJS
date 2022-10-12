@@ -26,7 +26,7 @@ class Usuario {
     };
   }
 }
-let h2
+
 class ListaUsuarios {
   constructor(listaUsuarios) {
     this.listaUsuarios = listaUsuarios || [];
@@ -83,7 +83,7 @@ class ListaUsuarios {
           let passwordN = prompt("Ingresá tu contraseña.");
           if (passwordN == usuario.getUserPass()) {
             // alert("¡Bienvenido/a!:" + " " + `${usuario.getUserName()}`);
-             h2 = root.innerHTML = `<h3>¡Bienvenido/a!: ${usuario.getUserName()}</h3>`
+            let h2 = root.innerHTML = `<h3>¡Bienvenido/a!: ${usuario.getUserName()}</h3>`
             ingresar = true;
             break;
           } else {
