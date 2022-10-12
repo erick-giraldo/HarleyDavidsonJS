@@ -1,4 +1,4 @@
-import { Grand, Cruiser, Sport } from "./models.js";
+import { Grand, Cruiser, Sport } from "./modelos.js";
 document.addEventListener("DOMContentLoaded", function () {
   const root = document.getElementById("root");
 
