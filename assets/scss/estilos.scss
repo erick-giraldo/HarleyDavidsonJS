@@ -1,0 +1,27 @@
+@import "./global/normalize";
+@import "./global/variables";
+@import "./global/mixin";
+@import "./global/mapas";
+@import "./global/extend";
+@import "./global/whatsapp";
+
+@import "./global/cdn";
+@import "header";
+@import "footer";
+@import "animaciones";
+
+@import "./index.scss";
+@import "./pages/inicio";
+@import "./pages/nosotros";
+@import "./pages/productos";
+@import "./pages/blog";
+@import "./pages/contacto";
+
+* {
+  box-sizing: border-box;
+}
+
+.hijo {
+  height: calc(100vh - 55px);
+}
+

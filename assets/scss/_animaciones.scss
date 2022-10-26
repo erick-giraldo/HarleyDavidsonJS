@@ -1,0 +1,223 @@
+/* Asignamos la animacion para el logo y agregamos propiedades */
+
+.rebote {
+  animation: subir-bajar 0.80s alternate infinite ease-in;
+}
+
+/* Creamos la animación Rebote y transformacion  (con keyframes) */
+
+@keyframes subir-bajar {
+  0% {
+    transform: translateY(-20%);
+  }
+
+  25% {
+    transform: translateY(-10%);
+  }
+
+
+  50% {
+    transform: translateY(0%);
+  }
+
+  75% {
+    transform: translateY(-10%);
+  }
+
+  100% {
+    transform: translateY(-20%);
+  }
+}
+
+/* Asignamos la animación al elemento Entrada */
+
+.descolgado {
+  animation: descolgado 3s;
+  transform-origin: left;
+  animation-fill-mode: forwards;
+}
+
+/* Creamos la animación (con keyframes) */
+
+@keyframes descolgado {
+  10% {
+    transform: rotate(110deg);
+  }
+
+  30% {
+    transform: rotate(55deg);
+  }
+
+  50% {
+    transform: rotate(80deg);
+  }
+
+  70% {
+    transform: rotate(65deg);
+  }
+
+  90% {
+    transform: rotate(70deg);
+  }
+}
+
+/* Loading...... */
+.load-7 {
+  position: absolute;
+  background: $background_header_footer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0;
+  z-index: -1;
+  animation: closeLoading 5s;
+
+  #app-preloader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .preloader-title:before {
+      content: $preload-title;
+      filter: opacity(0);
+      font-size: 20px;
+      font-weight: bold;
+      animation: preloader-title-anim 5s forwards;
+      animation-delay: 1s;
+    }
+
+    .preloader-spinner {
+      opacity: 0;
+      margin-top: 1.5rem;
+      width: $preload-spinner-size;
+      height: $preload-spinner-size;
+      animation: preloader-spinner .5s linear infinite;
+      animation-delay: 2s;
+
+      .preloader-spinner-icon {
+        stroke: $color-text-global;
+        stroke-width: $preload-spinner-width;
+        stroke-dasharray: 314%, 314%;
+        animation: preloader-spinner-icon-anim 1s linear infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes closeLoading {
+  0% {
+    opacity: 1;
+    z-index: 3;
+  }
+
+  70% {
+    z-index: 3;
+    opacity: 1;
+  }
+
+  98% {
+    z-index: 3;
+    opacity: 0;
+  }
+
+  100% {
+    z-index: -1;
+  }
+}
+
+/* animacón texto*/
+
+@keyframes preloader-title-anim {
+  0% {
+    filter: opacity(0);
+  }
+
+  100% {
+    filter: opacity(1);
+  }
+}
+
+/* animacón spinner*/
+@keyframes preloader-spinner {
+  0% {
+    opacity: 1;
+    transform: rotate(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-spinner-icon-anim {
+  0% {
+    stroke-dasharray: 0%, 314%;
+  }
+
+  100% {
+    stroke-dasharray: 314%, 314%;
+  }
+}
+
+/* animacón logo*/
+.fade-in-image {
+  animation: fadeIn 5s;
+  -webkit-animation: fadeIn 5s;
+  -moz-animation: fadeIn 5s;
+  -o-animation: fadeIn 5s;
+  -ms-animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

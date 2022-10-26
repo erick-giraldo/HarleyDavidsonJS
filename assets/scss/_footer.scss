@@ -1,0 +1,42 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $background_header_footer;
+  height: 55px;
+  .redes {
+    margin-left: 10px;
+    font-size: 20px;
+    letter-spacing: 8px;
+
+    > a {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  > img {
+    margin-right: 10px;
+  }
+}
+
+/* Tablet y Movil*/
+
+@media (max-width: 993px) {
+  .footer {
+    display: flex;
+    align-items: center;
+
+    .redes {
+      margin: 0 auto;
+      letter-spacing: 10px;
+    }
+
+    > {
+      p,
+      img {
+        display: none;
+      }
+    }
+  }
+}

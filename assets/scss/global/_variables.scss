@@ -1,0 +1,42 @@
+/* Variables Globales */
+
+$font-global: 'Roboto', sans-serif;
+$color-text-global: #fff;
+$font-size-flobal: 16px;
+$line-h:2rem;
+$color-text-secundario: #747474;
+$color-white: #fff;
+$background_header_footer: #070d1b;
+$li-active: #d9f116;
+$border-top-menuly: 0.5px solid #3f4551;
+$background_main: #fff;
+$text-ref: 1.75rem;
+
+$preload-title:'HARLEY DAVIDSON';
+$preload-spinner-size:32px;
+$preload-spinner-width:3px;
+
+
+ /* Boton Inicio */
+
+$btn_shadow:rbga(236, 116, 149,  0.75);
+$btn_linear:#ed6ea0, #ec8c69, #f7186a, #FBB03B;
+
+/* Shadow Main */
+
+$border_main: 20px;
+$shadow_main: 0px 10px 45px -6px rgba(0, 0, 0, 0.15);
+
+
+
+/* Breakpoints para todas las paginas*/
+//Inicio
+$sxxl:320px;
+$sxl:475px;
+//blog
+$small-blog: 495px;
+$medium-blog: 768px;
+//global
+$small: 430px;
+$medium: 991px;
+$large : 1200px;

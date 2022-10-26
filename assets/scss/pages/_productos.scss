@@ -1,0 +1,97 @@
+.main-container {
+    .menu-user{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        right: 1rem;
+        position: absolute;
+        top: 29px;
+        .fa-shopping-cart{
+            font-size: 1.3rem;
+        }
+        .dropdown{
+          .dropdown-toggle{
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 7px;
+            background: #070d1b!important;
+            border-color: #070d1b!important;
+            .active-sesion{
+              margin-bottom: 0;
+              color: #fff;
+            }
+          }
+        }
+      }
+    .productos-contenido {
+        @include styleMainGlobal (20px,auto,2rem,2rem,$border_main,$shadow_main);
+        >p {
+            text-align: justify;
+            line-height: 32px;
+        }
+
+        .p-titulo{
+            font-size: 1.5em;
+            margin: 0.67em 0;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .productos-section {
+            gap: 28px;
+            margin-left: 0px;
+            display: flex;
+            justify-content: center;
+
+            .modal-dialog {
+                margin-top: 16rem;
+            }
+            
+            .card {
+                border: none;
+                border-radius: 3px;
+                box-shadow: 0px 20px 44px -6px rgba(0, 0, 0, 0.06);
+                .card-body{
+                    .card-title{
+                        font-size: 1.25rem;
+                        margin-top: 0;
+                        margin-bottom: 0.5rem;
+                        font-weight: 500;
+                        line-height: 1.2;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/**************** Para Tablet **********************/
+@media (max-width: $medium) {
+    .main-container {
+        .productos-contenido {
+            .productos-section {
+                display: flex;
+                flex-direction: center;
+            }
+        }
+    }
+}
+
+/**************** Para Moviles **********************/
+
+@media (max-width: $small) {
+
+    .main-container {
+        .productos-contenido {
+            padding: 2rem;
+
+            .productos-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}

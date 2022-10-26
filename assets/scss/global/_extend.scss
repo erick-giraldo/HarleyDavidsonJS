@@ -1,0 +1,67 @@
+/*Extend*/
+%main-container-default {
+    overflow: auto;
+    position: relative;
+    color: $color-text-secundario;
+    height: calc(100vh - 55px);
+}
+
+%breadcrumb-default {
+    text-decoration: none;
+    color: $color-text-secundario;
+    font-weight: 500;
+}
+
+%referencia-default {
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.padre {
+    .hijo {
+        .main-container {
+            @extend %main-container-default;
+        }
+
+        .referencia {
+            @extend %referencia-default;
+
+            .breadcrumb {
+
+                >li,
+                & a {
+                    @extend %breadcrumb-default;
+                }
+            }
+        }
+
+    }
+}
+
+/* Moviles*/
+%referencia-movile {
+    @media (max-width: 991px) {
+        height: 100px;
+    }
+}
+
+%main-container-movile {
+    @media (max-width: 991px) {
+        height: calc(100vh - 115px);
+    }
+}
+
+
+.padre {
+    .hijo {
+        .main-container {
+            @extend %main-container-movile;
+        }
+
+        .referencia {
+            @extend %referencia-movile;
+        }
+
+    }
+}

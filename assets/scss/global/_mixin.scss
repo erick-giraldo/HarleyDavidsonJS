@@ -1,0 +1,27 @@
+/* Mixin sin parametros */
+
+@mixin body-default {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: $color-text-global;
+    font-family: $font-global;
+    font-size: $font-size-flobal;
+    line-height: $line-h;
+}
+
+body,
+html {
+    @include body-default;
+}
+
+/*mixin con parametros */
+
+@mixin styleMainGlobal($gap-M, $height-M, $padding-M, $mbottom-M, $radius-M, $shadow-M) {
+    gap: $gap-M;
+    height: $height-M;
+    padding: $padding-M;
+    margin-bottom: $mbottom-M;
+    border-radius: $radius-M;
+    box-shadow: $shadow-M;
+}

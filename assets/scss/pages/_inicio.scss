@@ -1,0 +1,107 @@
+.main .contenido {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 40px;
+  overflow: auto;
+  justify-content: center;
+  color: $color-text-secundario;
+  text-align: justify;
+}
+
+.container-both {
+    display: flex;
+    align-items: center;
+  .contenido-imagen {
+    text-align: center;
+  }
+
+  .contenido-container {
+    .btn-hover {
+      &.btn-inicio {
+        width: 200px;
+        color: $color-text-global;
+        background-image: linear-gradient(to right, $btn_linear);
+        box-shadow: 0 4px 15px 0 $btn_shadow;
+      }
+
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      padding: 16px 31px;
+      border: none;
+      background-size: 300% 100%;
+      border-radius: 50px;
+      -moz-transition: all .4s ease-in-out;
+      -o-transition: all .4s ease-in-out;
+      -webkit-transition: all .4s ease-in-out;
+      transition: all .4s ease-in-out;
+    }
+  }
+
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  height: calc(100vh - 55px);
+  .menu-user{
+    position: absolute;
+    top: 29px;
+    .dropdown{
+      .dropdown-toggle{
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 7px;
+        background: #070d1b!important;
+        border-color: #070d1b!important;
+        .active-sesion{
+          margin-bottom: 0;
+          color: #fff;
+        }
+      }
+    }
+  }
+ 
+}
+
+
+
+/* Tablet y Responsive */
+@media (max-width: 993px) {
+  .main {
+    height: calc(100vh - 115px);
+
+    .contenido {
+      padding: 20px;
+    }
+  }
+
+  .container-both {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .contenido-container {
+      .btn-container {
+        text-align: center;
+      }
+    }
+  }
+}
+  /* Moviles */
+  // @media (max-width: $sxxl) {
+  //   .container-both .contenido-imagen>img {
+  //     margin-top: 16rem !important;
+  //   }
+  // }
+
+  @media (max-width: $sxl) {
+    .main .contenido{
+      display: flex;
+      justify-content: space-between;
+    }
+  }

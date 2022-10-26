@@ -1,0 +1,15 @@
+/*Mapas */
+$icons: ("facebook": #199cf7, "youtube": #f30001, "instagram": #d53678, "twitter": #199cf7);
+
+/* Bucle*/
+@each $red, $color in $icons {
+ .fa-#{$red}{
+      color: $color-text-global;
+      &:hover{
+        color: $color;
+      }
+    }
+   
+  }
+/* Map - Get */
+$menuText: (colorText:$color-text-global, fontSize: 15px, fontWeight: 500, textTransform: uppercase, textDecoration: none);
