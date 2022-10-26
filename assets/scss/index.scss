@@ -1,0 +1,193 @@
+.fa {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+
+}
+/* Social Icons */
+
+.users-icon{
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  p{
+    font-size: 12px;
+    color: red;
+    margin-inline-end: auto;
+    font-weight: 500;
+  }
+  .text-tp{
+    color: #000;
+    strong{
+      font-weight: 500;
+    }
+  }
+}
+.active-sesion{
+  color: #000;
+}
+/* Tooltips */
+.users-icon{
+  .tooltip-data {
+    display: none;
+    background: #81dd6e;
+    max-width: 253px;
+    position: absolute;
+    right: 23px;
+    top: 0;
+    border-radius: 0.5rem;
+    padding: 10px;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    text-align: initial;
+    z-index: 1;
+  }
+
+  &:hover {
+    .tooltip-data {
+      display: block;
+    }
+  }
+}
+
+.bg {
+  background-image: url(./../images/portada-login.webp);
+  background-position: center center;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  object-fit: cover;
+}
+
+#register {
+  display: none;
+}
+
+#btn-reg-submit,
+#btn-log-submit {
+  display: flex;
+  justify-content: center;
+}
+
+.spinnerLog {
+  display: none;
+}
+
+#btn-log-submit .spinnerLog {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border-left-color: #fff;
+  animation: spin 1s ease infinite;
+}
+
+.spinnerReg {
+  display: none;
+}
+
+#btn-reg-submit .spinnerReg {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border-left-color: #fff;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  z-index: 99;
+
+  &.sucess {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    background-color: green;
+  }
+
+  &.error {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    background-color: red;
+  }
+
+  &.warning {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    background-color: yellow;
+    color: black;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

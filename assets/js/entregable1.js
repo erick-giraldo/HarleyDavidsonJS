@@ -1,6 +1,6 @@
-import { Grand, Cruiser, Sport } from "./modelos.js";
+import { Grand, Cruiser, Sport } from "./recursos/modelos.js";
 document.addEventListener("DOMContentLoaded", function () {
-  const root = document.getElementById("root");
+  const root = document.querySelector(".productos-contenido");
 
   let selectedProduct = {};
 
@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const allProduct = {
       "Grand American Touring": Grand,
-      Cruiser: Cruiser,
-      Sport: Sport,
+      "Cruiser": Cruiser,
+      "Sport": Sport,
     };
 
     return allProduct[getModel];
@@ -28,9 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
       start();
     } else {
       selectedProduct = products;
+    console.log("🚀 ~ file: entregable1.js ~ line 20 ~ start ~ selectedProduct", selectedProduct)
+
     }
   }
   start();
+ 
+  console.log("🚀 ~ file: entregable1.js ~ line 31 ~ start ~ selectedProduct", selectedProduct)
 
   root.innerHTML = '<h1 class="title">Lista de Artículos</h1>';
 
