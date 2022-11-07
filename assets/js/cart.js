@@ -97,10 +97,12 @@ function loadHtml() {
                 <h6>Amount: ${amount}</h6>
             </div>
             <div class="product-count">
-            <button type="button" class="decrement">-</button>
             <input type="number" class="product-count-value" value="1">
+           <div>
+           <button type="button" class="decrement">-</button>
             <button type="button" class="increment">+</button>
-        </div>
+           </div>
+              </div>
             <span class="delete-product" data-id="${id}">X</span>
         `;
 
