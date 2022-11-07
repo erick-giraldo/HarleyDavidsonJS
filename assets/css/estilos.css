@@ -1490,12 +1490,26 @@ html {
 .main-container .menu-user {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 15px;
   right: 1rem;
   position: absolute;
-  top: 29px; }
+  top: 29px;
+  width: 100%; }
   .main-container .menu-user .fa-shopping-cart {
-    font-size: 1.3rem; }
+    font-size: 1.6rem; }
+  .main-container .menu-user .count-product {
+    background-color: #fff;
+    position: absolute;
+    top: -9px;
+    right: 120px;
+    padding: 1px 6px;
+    border-radius: 50%;
+    color: red;
+    font-weight: 500;
+    font-family: system-ui;
+    line-height: 18px;
+    font-size: 12px; }
   .main-container .menu-user .dropdown .dropdown-toggle {
     display: flex;
     align-items: center;
@@ -1507,7 +1521,76 @@ html {
       margin-bottom: 0;
       color: #fff; }
 
+.main-container .cart-products {
+  position: absolute !important;
+  top: 82px;
+  right: -18px;
+  background-color: #fff;
+  padding: 0 18px;
+  box-shadow: 0px 20px 44px -6px rgba(0, 0, 0, 0.06);
+  display: none;
+  min-width: 290px;
+  z-index: 2;
+  width: 440px;
+  right: 134px;
+  border-radius: 6px; }
+  .main-container .cart-products .close-btn {
+    position: absolute;
+    padding: 1px 6px;
+    top: -4px;
+    right: 6px;
+    cursor: pointer;
+    color: #000;
+    font-weight: 700;
+    line-height: 18px; }
+  .main-container .cart-products .item {
+    display: flex;
+    border-bottom: solid 2px #000;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between; }
+    .main-container .cart-products .item .product-count {
+      display: flex; }
+      .main-container .cart-products .item .product-count .product-count-value {
+        width: 2rem; }
+    .main-container .cart-products .item span {
+      background-color: #000;
+      padding: 0px 5px;
+      border-radius: 50%;
+      color: #fff;
+      font-family: system-ui;
+      cursor: pointer; }
+  .main-container .cart-products h3 {
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    color: #000;
+    text-align: center; }
+  .main-container .cart-products h2 {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    color: #000;
+    text-align: center; }
+
+.main-container .content-product {
+  display: flex;
+  gap: 10px; }
+  .main-container .content-product .filter-products {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    padding: 15px;
+    border-radius: 20px;
+    height: 150px;
+    position: sticky;
+    top: 10px;
+    box-shadow: 0px 20px 44px -6px rgba(0, 0, 0, 0.06); }
+    .main-container .content-product .filter-products .check-items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+
 .main-container .productos-contenido {
+  width: 87%;
   gap: 20px;
   height: auto;
   padding: 2rem;
@@ -1533,12 +1616,25 @@ html {
       border: none;
       border-radius: 3px;
       box-shadow: 0px 20px 44px -6px rgba(0, 0, 0, 0.06); }
+      .main-container .productos-contenido .productos-section .card .btn-none {
+        border: none;
+        background: none; }
+      .main-container .productos-contenido .productos-section .card .btn-outline-dark {
+        width: 100%; }
       .main-container .productos-contenido .productos-section .card .card-body .card-title {
         font-size: 1.25rem;
         margin-top: 0;
         margin-bottom: 0.5rem;
         font-weight: 500;
         line-height: 1.2; }
+      .main-container .productos-contenido .productos-section .card .card-body .card-inv {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
+        .main-container .productos-contenido .productos-section .card .card-body .card-inv .card-price {
+          color: red; }
+        .main-container .productos-contenido .productos-section .card .card-body .card-inv .card-stock {
+          font-size: 14px; }
 
 /**************** Para Tablet **********************/
 @media (max-width: 991px) {

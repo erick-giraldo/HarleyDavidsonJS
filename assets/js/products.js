@@ -1,47 +1,113 @@
-import { Grand, Cruiser, Sport } from "./recursos/modelos.js";
+//import { Grand, Cruiser, Sport } from "./recursos/modelos.js";
 document.addEventListener("DOMContentLoaded", function () {
   const root = document.querySelector(".productos-contenido");
-  let arrayCheckbox
-  const isCheckedProduct = () =>{
-    if(checkGrand === true || checkCruiser === true || checkSport === true){
-      const checkCruiser = document.querySelector("#Cruiser").value;
-     const checkSport = document.querySelector("#Sport").value;
-     const checkGrand = document.querySelector("#Grand").value;
-   
-      arrayCheckbox = [checkGrand, checkCruiser, checkSport]
-   }
-  }
-  let checkCruiser = document.querySelector("#Grand").checked;
-  let checkGrand = document.querySelector("#Cruiser").checked;
-  let checkSport = document.querySelector("#Sport").checked;
-  console.log("🚀 ~ file: products.js ~ line 17 ~ checkSport", checkSport)
-  
-  // checkCruiser.addEventListener("click", isCheckedProduct);
-  // checkGrand.addEventListener("click", isCheckedProduct);
-  // checkSport.addEventListener("click", isCheckedProduct);
+  let dataProd = {};
+
+  let arrayCheckbox = [Grand, Cruiser, Sport];
+  //let arrayCheckbox = [];
+
+  let checkCruiser = document.getElementById("Cruiser");
+  let checkGrand = document.getElementById("Grand");
+  let checkSport = document.getElementById("Sport");
+
+  const getProducts = async () => {
+    try {
+      const response = await fetch(
+        `https://api-harley-davidson.herokuapp.com/modelos`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+
+      test(result);
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        showConfirmButton: false,
+        title: "Oops... no se pudo obtener data de usuarios",
+        text: `${error}`,
+      });
+    }
+  };
+  getProducts();
+
+  checkCruiser.addEventListener("click", function () {
+    const dato = Cruiser;
+    const indice = arrayCheckbox.indexOf(dato);
+    if (checkCruiser.checked) {
+      !arrayCheckbox.includes(Grand) && arrayCheckbox.push(Grand);
+      test(arrayCheckbox);
+    } else {
+      if (indice >= 0) {
+        arrayCheckbox.splice(indice, 1);
+        test(arrayCheckbox);
+      }
+    }
+  });
+
+  checkGrand.addEventListener("click", function () {
+    const dato = Grand;
+    const indice = arrayCheckbox.indexOf(dato);
+    if (checkGrand.checked) {
+      !arrayCheckbox.includes(Cruiser) && arrayCheckbox.push(Cruiser);
+      test(arrayCheckbox);
+    } else {
+      if (indice >= 0) {
+        arrayCheckbox.splice(indice, 1);
+        test(arrayCheckbox);
+      }
+    }
+  });
+
+  checkSport.addEventListener("click", function () {
+    const dato = Sport;
+    const indice = arrayCheckbox.indexOf(dato);
+    if (checkSport.checked) {
+      !arrayCheckbox.includes(Sport) && arrayCheckbox.push(Sport);
+      test(arrayCheckbox);
+    } else {
+      if (indice >= 0) {
+        arrayCheckbox.splice(indice, 1);
+        test(arrayCheckbox);
+      }
+    }
+  });
+
   const listItem = (array) => {
     let textHtml = "";
     for (let i = 0; i < array.data.length; i++) {
       let child = `<div
         class="card col-lg-2 col-md-6 col-sm-12"
-        style="width: 20rem"
+        style="width: 20rem" 
         >
-        <img
+        <button
+        type="button"
+        class="btn-none"
+        data-bs-toggle="modal"
+        data-bs-target="#sportster"
+      >        <img
         src="./../assets/images/modelos/${array.data[i].image}"
           class="d-block w-100"
           alt="${array.data[i].name}"
-        />
+        /> 
+        </button>
         <div class="card-body">
-          <h5 class="card-title">${array.data[i].name}</h5>
+          <h5 class="card-title card-name">${array.data[i].name}</h5>
           <p class="card-text">${array.data[i].description}
           </p>
+          <div class="card-inv" >
+          <p class="card-title card-price">$ ${array.data[i].price}</p>
+          <p class="card-title card-stock">Stock: ${array.data[i].stock}</p>
+          </div>
           <button
             type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
+            class="btn btn-outline-dark"
             data-bs-target="#sportster"
+            data-id="${array.data[i].id}"
           >
-            Ver más...
+            ADD TO CARD
           </button>
         </div>
         </div>
@@ -157,47 +223,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return textHtml;
   };
-// ---------------
 
+  const test = (items) => {
+    return (root.innerHTML = `<div>
+      <h1>Modelos</h1>
+      <div class="productos-container">
+        ${items.map(
+          (products) =>
+            `<div>
+            <p class="p-titulo">${products.title}</p>
+            <p>Descubre algunos de los modelos más recientes.</p>
+           <div class="row productos-section">${listItem(products)}</div>
+          </div>`
+        )}
+      </div>`);
+  };
 
-
-console.log("🚀 ~ file: products.js ~ line 148 ~ arrayCheckbox", arrayCheckbox)
-
-  const filterProducts = [Grand, Cruiser, Sport];
-
-  const validFilter = filterProducts[arrayCheckbox];
-  console.log("🚀 ~ file: products.js ~ line 148 ~ validFilter", validFilter)
-
-  const dataGrand = `<p class="p-titulo">${Grand.title}</p>
-<p>Descubre algunos de los modelos más recientes.</p>
-<div class="row productos-section">
-   ${listItem(Grand)}
-</div>`;
-
-  const validatedataGrand = validFilter ? dataGrand : "";
-
-  const dataCruiser = `<p class="p-titulo">${Cruiser.title}</p>
- <p>Descubre algunos de los modelos más recientes.</p>
- <div class="row productos-section">
-   ${listItem(Cruiser)}
- </div>`;
-  const validatedataCruiser = validFilter ? dataCruiser : "";
-// ---------------
-  root.innerHTML = `<div>
-  <h1>Modelos</h1>
-  <div class="productos-containerA">
-      ${dataGrand}
-    <br>
-    <p class="p-titulo">${Cruiser.title}</p>
-    <p>Descubre algunos de los modelos más recientes.</p>
-    <div class="row productos-section">
-      ${listItem(Cruiser)}
-    </div>
-    <br>
-    <p class="p-titulo">${Sport.title}</p>
-    <p>Descubre algunos de los modelos más recientes.</p>
-    <div class="row productos-section">
-      ${listItem(Sport)}
-    </div>
-</div>`;
+  arrayCheckbox == [] ? test(listProducts) : test(arrayCheckbox);
 });
