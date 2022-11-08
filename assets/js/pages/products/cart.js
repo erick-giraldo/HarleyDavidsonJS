@@ -1,8 +1,9 @@
 let allContainerCart = document.querySelector(".productos-contenido");
-console.log("🚀 ~ file: cart.js ~ line 2 ~ allContainerCart", allContainerCart);
 let containerBuyCart = document.querySelector(".card-items");
 let priceTotal = document.querySelector(".price-total");
 let amountProduct = document.querySelector(".count-product");
+let checkOut = document.querySelector('.order-button')
+
 
 let buyThings = [];
 let totalCard = 0;
@@ -20,17 +21,13 @@ function addProduct(e) {
   if (e.target.classList.contains("btn-outline-dark")) {
     const selectProduct = e.target.parentElement.parentElement;
     readTheContent(selectProduct);
+    checkOut.style.display = 'block'
   }
 }
 
 function deleteProduct(e) {
   if (e.target.classList.contains("delete-product")) {
     const deleteId = e.target.getAttribute("data-id");
-    console.log(
-      "🚀 ~ file: cart.js ~ line 30 ~ deleteProduct ~ buyThings",
-      buyThings
-    );
-
     buyThings.forEach((value) => {
       if (value.id == deleteId) {
         let priceReduce =
@@ -43,8 +40,9 @@ function deleteProduct(e) {
     buyThings = buyThings.filter((product) => product.id !== deleteId);
 
     countProduct--;
+    countProduct <= 0 && (checkOut.style.display = 'none')
+    
   }
-  //FIX: El contador se quedaba con "1" aunque ubiera 0 productos
   if (buyThings.length === 0) {
     priceTotal.innerHTML = 0;
     amountProduct.innerHTML = 0;
@@ -78,14 +76,17 @@ function readTheContent(product) {
     buyThings = [...pro];
   } else {
     buyThings = [...buyThings, infoProduct];
+    localStorage.setItem("buyThings",JSON.stringify(buyThings))
     countProduct++;
   }
   loadHtml();
 }
 
+const getProductLS = JSON.parse(localStorage.getItem("buyThings"))
+console.log('getProductLS',getProductLS)
 function loadHtml() {
   clearHtml();
-  buyThings.forEach((product) => {
+  getProductLS.forEach((product) => {
     const { image, title, price, amount, id } = product;
     const row = document.createElement("div");
     row.classList.add("item");
@@ -99,8 +100,8 @@ function loadHtml() {
             <div class="product-count">
             <input type="number" class="product-count-value" value="1">
            <div>
-           <button type="button" class="decrement">-</button>
-            <button type="button" class="increment">+</button>
+           <button type="button" class="decrement">+</button>
+            <button type="button" class="increment">-</button>
            </div>
               </div>
             <span class="delete-product" data-id="${id}">X</span>
@@ -113,6 +114,7 @@ function loadHtml() {
     amountProduct.innerHTML = countProduct;
   });
 }
+loadHtml()
 function clearHtml() {
   containerBuyCart.innerHTML = "";
 }

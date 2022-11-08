@@ -210,14 +210,16 @@ function login(dataLogin) {
           spinnerLog.style.display = "block";
           userLog.disabled = true;
           passLog.disabled = true;
-          Swal.fire({
-            icon: "success",
-            title: "Great...",
-            showConfirmButton: false,
-            html:
-            `Bienvenido <b style="text-transform: uppercase">${isAccount.usuario}</b>`
-          });
-         setTimeout(toStart, 2000);
+          setTimeout(function(){
+            Swal.fire({
+              icon: "success",
+              title: "Great...",
+              showConfirmButton: false,
+              html:
+              `Bienvenido <b style="text-transform: uppercase">${isAccount.usuario}</b>`
+            });
+        },2000);
+         setTimeout(toStart, 3000);
         } else {
             Swal.fire({
                 icon: "error",
