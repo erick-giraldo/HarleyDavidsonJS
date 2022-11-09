@@ -38,47 +38,47 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   getProducts();
 
-  checkCruiser.addEventListener("click", function () {
-    const dato = Cruiser;
-    const indice = arrayCheckbox.indexOf(dato);
-    if (checkCruiser.checked) {
-      !arrayCheckbox.includes(Grand) && arrayCheckbox.push(Grand);
-      test(arrayCheckbox);
-    } else {
-      if (indice >= 0) {
-        arrayCheckbox.splice(indice, 1);
-        test(arrayCheckbox);
-      }
-    }
-  });
+  // checkCruiser.addEventListener("click", function () {
+  //   const dato = Cruiser;
+  //   const indice = arrayCheckbox.indexOf(dato);
+  //   if (checkCruiser.checked) {
+  //     !arrayCheckbox.includes(Grand) && arrayCheckbox.push(Grand);
+  //     test(arrayCheckbox);
+  //   } else {
+  //     if (indice >= 0) {
+  //       arrayCheckbox.splice(indice, 1);
+  //       test(arrayCheckbox);
+  //     }
+  //   }
+  // });
 
-  checkGrand.addEventListener("click", function () {
-    const dato = Grand;
-    const indice = arrayCheckbox.indexOf(dato);
-    if (checkGrand.checked) {
-      !arrayCheckbox.includes(Cruiser) && arrayCheckbox.push(Cruiser);
-      test(arrayCheckbox);
-    } else {
-      if (indice >= 0) {
-        arrayCheckbox.splice(indice, 1);
-        test(arrayCheckbox);
-      }
-    }
-  });
+  // checkGrand.addEventListener("click", function () {
+  //   const dato = Grand;
+  //   const indice = arrayCheckbox.indexOf(dato);
+  //   if (checkGrand.checked) {
+  //     !arrayCheckbox.includes(Cruiser) && arrayCheckbox.push(Cruiser);
+  //     test(arrayCheckbox);
+  //   } else {
+  //     if (indice >= 0) {
+  //       arrayCheckbox.splice(indice, 1);
+  //       test(arrayCheckbox);
+  //     }
+  //   }
+  // });
 
-  checkSport.addEventListener("click", function () {
-    const dato = Sport;
-    const indice = arrayCheckbox.indexOf(dato);
-    if (checkSport.checked) {
-      !arrayCheckbox.includes(Sport) && arrayCheckbox.push(Sport);
-      test(arrayCheckbox);
-    } else {
-      if (indice >= 0) {
-        arrayCheckbox.splice(indice, 1);
-        test(arrayCheckbox);
-      }
-    }
-  });
+  // checkSport.addEventListener("click", function () {
+  //   const dato = Sport;
+  //   const indice = arrayCheckbox.indexOf(dato);
+  //   if (checkSport.checked) {
+  //     !arrayCheckbox.includes(Sport) && arrayCheckbox.push(Sport);
+  //     test(arrayCheckbox);
+  //   } else {
+  //     if (indice >= 0) {
+  //       arrayCheckbox.splice(indice, 1);
+  //       test(arrayCheckbox);
+  //     }
+  //   }
+  // });
 
   const listItem = (array) => {
     let textHtml = "";
@@ -244,5 +244,5 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`);
   };
 
-  arrayCheckbox == [] ? test(listProducts) : test(arrayCheckbox);
+  // arrayCheckbox == [] ? test(listProducts) : test(arrayCheckbox);
 });
