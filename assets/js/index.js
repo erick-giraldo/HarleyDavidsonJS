@@ -1,4 +1,3 @@
-// import {getUsersAPi} from './services/api.js'
 document.querySelector("#register-btn").addEventListener("click", viewRegister);
 document.querySelector("#login-btn").addEventListener("click", viewLogin);
 
@@ -93,6 +92,34 @@ function viewRegister() {
   registerId.style.display = "block";
 }
 // Obtenemos los datos de usuarios desde el API
+// Funcion con AJAX <=================== OJO ==================
+// const getUsers = async ()=>{
+//   try {
+//     const http = new XMLHttpRequest();
+//     const url = `https://api-harley-davidson.herokuapp.com/users`;
+//       http.onreadystatechange = function(){
+//         if(this.readyState === 4 && this.status === 200){
+//           let data = JSON.parse(this.responseText)
+//           console.log("xxxxxx",data);
+//           dataUsers.push(data);
+//           insertUsersDom(data);
+//         }
+//       }
+//       http.open("GET", url);
+//       http.send();
+//   } catch (error) {
+//     Swal.fire({
+//       icon: "error",
+//       showConfirmButton: false,
+//       title: "Oops... no se pudo obtener data de usuarios",
+//       text: `${error}`,
+//     });
+//   }
+ 
+// }
+
+// Funcion con fetch <=================== OJO ==================
+
 const getUsers = async () => {
   try {
     const response = await fetch(
