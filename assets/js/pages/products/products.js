@@ -1,30 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   const root = document.querySelector(".productos-contenido");
-  const spinnerMain = document.querySelector('.spinnerMain')
-  spinnerMain.style.display = 'none'
+  const spinnerMain = document.querySelector(".spinnerMain");
+  spinnerMain.style.display = "none";
 
-  let arrayCheckbox = [Grand, Cruiser, Sport];
-  //let arrayCheckbox = [];
-
-  let checkCruiser = document.getElementById("Cruiser");
-  let checkGrand = document.getElementById("Grand");
-  let checkSport = document.getElementById("Sport");
 
   const getProducts = async () => {
     try {
-      
       const response = await fetch(
         `https://api-harley-davidson.herokuapp.com/modelos`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      spinnerMain.style.display = 'flex'
+      spinnerMain.style.display = "flex";
       const result = await response.json();
-      setTimeout(function(){
-        test(result)
-        spinnerMain.style.display = 'none'
-    },5000);
+      setTimeout(function () {
+        test(result);
+        spinnerMain.style.display = "none";
+      }, 5000);
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -33,52 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
         title: "Oops... no se pudo obtener data de usuarios",
         text: `${error}`,
       });
-      spinnerMain.style.display = 'none'
+      spinnerMain.style.display = "none";
     }
   };
   getProducts();
-
-  // checkCruiser.addEventListener("click", function () {
-  //   const dato = Cruiser;
-  //   const indice = arrayCheckbox.indexOf(dato);
-  //   if (checkCruiser.checked) {
-  //     !arrayCheckbox.includes(Grand) && arrayCheckbox.push(Grand);
-  //     test(arrayCheckbox);
-  //   } else {
-  //     if (indice >= 0) {
-  //       arrayCheckbox.splice(indice, 1);
-  //       test(arrayCheckbox);
-  //     }
-  //   }
-  // });
-
-  // checkGrand.addEventListener("click", function () {
-  //   const dato = Grand;
-  //   const indice = arrayCheckbox.indexOf(dato);
-  //   if (checkGrand.checked) {
-  //     !arrayCheckbox.includes(Cruiser) && arrayCheckbox.push(Cruiser);
-  //     test(arrayCheckbox);
-  //   } else {
-  //     if (indice >= 0) {
-  //       arrayCheckbox.splice(indice, 1);
-  //       test(arrayCheckbox);
-  //     }
-  //   }
-  // });
-
-  // checkSport.addEventListener("click", function () {
-  //   const dato = Sport;
-  //   const indice = arrayCheckbox.indexOf(dato);
-  //   if (checkSport.checked) {
-  //     !arrayCheckbox.includes(Sport) && arrayCheckbox.push(Sport);
-  //     test(arrayCheckbox);
-  //   } else {
-  //     if (indice >= 0) {
-  //       arrayCheckbox.splice(indice, 1);
-  //       test(arrayCheckbox);
-  //     }
-  //   }
-  // });
 
   const listItem = (array) => {
     let textHtml = "";
@@ -112,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
             data-bs-target="#sportster"
             data-id="${array.data[i].id}"
           >
-            ADD TO CARD
+            Agregar a Carrito
           </button>
         </div>
         </div>
@@ -243,6 +194,4 @@ document.addEventListener("DOMContentLoaded", function () {
         )}
       </div>`);
   };
-
-  // arrayCheckbox == [] ? test(listProducts) : test(arrayCheckbox);
 });

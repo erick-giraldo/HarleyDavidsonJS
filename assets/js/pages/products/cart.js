@@ -11,55 +11,66 @@ let selectPayment = document.querySelector(".form-select");
 let btnPayment = document.querySelector(".btn-pay-checkout");
 let infoPayment = document.querySelector(".info-payment");
 let btnPayTxt = document.querySelector(".btn-pay-txt");
+let btnCardTxt = document.querySelector(".btn-card-txt");
+let spinnerPay = document.querySelector(".spinnerPay");
 let modalBackdrop = document.querySelector(".modal-backdrop");
-console.log("🚀 ~ file: cart.js ~ line 16 ~ modalBackdrop", modalBackdrop)
+console.log("🚀 ~ file: cart.js ~ line 16 ~ modalBackdrop", modalBackdrop);
 let buyThings = [];
 let totalCard = 0;
 
-selectPayment.addEventListener("change", function(){
+selectPayment.addEventListener("change", function () {
   const selectValue = selectPayment.value;
-  btnPayment.style.display = 'flex'
-  infoPayment.style.display = 'block'
+  btnPayment.style.display = "flex";
+  infoPayment.style.display = "block";
+  btnPayTxt.style.display = "none";
+  btnCardTxt.style.display = "none";
+  spinnerPay.style.display = "none";
   switch (selectValue) {
-  case "Plin":
-    yape.style.display = 'none'
-    form.style.display = 'none'
-    plin.style.display = 'block'
-    
-    break;
-  case "Yape":
-    plin.style.display = 'none'
-    form.style.display = 'none'
-    yape.style.display = 'block'
-    break
-  case "Tarjeta":
-    plin.style.display = 'none'
-    yape.style.display = 'none'
-    infoPayment.style.display = 'none'
-    form.style.display = 'block'
-    break
-  default:
-    break;
-}
+    case "Plin":
+      yape.style.display = "none";
+      form.style.display = "none";
+      plin.style.display = "block";
+      btnPayTxt.style.display = "block";
+      break;
+    case "Yape":
+      plin.style.display = "none";
+      form.style.display = "none";
+      yape.style.display = "block";
+      btnPayTxt.style.display = "block";
 
+      break;
+    case "Tarjeta":
+      plin.style.display = "none";
+      yape.style.display = "none";
+      infoPayment.style.display = "none";
+      form.style.display = "block";
+      btnCardTxt.style.display = "block";
+      break;
+    default:
+      break;
+  }
 });
 function closeBtn() {
   document.getElementById("products-id").style.right = "-500px";
 }
 
-btnPayment.addEventListener("click", function(){
+btnPayment.addEventListener("click", function () {
+  btnPayTxt.style.display = "none";
+  btnCardTxt.style.display = "none";
+  spinnerPay.style.display = "block";
   setTimeout(function () {
     Swal.fire({
       icon: "success",
       title: "Bien Hecho!!",
       text: "El pago fue validado correctamente",
+      confirmButtonText: "Save",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        closeBtn();
+        emptyCar();
+        window.location.href = "productos.html";
+      }
     });
-    closeBtn();
-    emptyCar();
-    btnPayment.modal('hide')
-    modalBackdrop.addEventListener("change", function(){
-      // modalBackdrop.style.focus = 0; pendiente
-    })
   }, 2000);
 });
 
@@ -74,8 +85,6 @@ const Toast = Swal.mixin({
     toast.addEventListener("mouseleave", Swal.resumeTimer);
   },
 });
-
-//functions
 
 const addProduct = (e) => {
   e.preventDefault();
@@ -117,6 +126,11 @@ const readTheContent = (product) => {
     parseFloat(totalCard) + parseFloat(infoProduct.price.replace(/['$]+/g, ""));
   totalCard = totalCard.toFixed(2);
   const exist = buyThings.some((product) => product.id === infoProduct.id);
+  Toast.fire({
+    icon: "success",
+    html: `Item argegado a carrito`,
+  });
+
   if (exist) {
     Toast.fire({
       icon: "info",

@@ -318,7 +318,7 @@
     }
 
     .productos-contenido {
-        width: 87%;
+        width: 100%;
         @include styleMainGlobal (20px, auto, 2rem, 2rem, $border_main, $shadow_main);
 
         >p {
