@@ -9,15 +9,15 @@ const loginPage = document.querySelector("#login-sesion");
 // Validando sesion con Toast
 const Toast = Swal.mixin({
   toast: true,
-  position: 'bottom',
+  position: "bottom",
   showConfirmButton: false,
   timer: 5000,
   timerProgressBar: true,
   didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 function validSesion() {
   sesion = sessionStorage.getItem("sesion");
@@ -28,16 +28,17 @@ if (sesion !== "" && sesion === "true") {
   loginPage.style.display = "none";
 
   Toast.fire({
-    icon: 'info',
-    html:
-    `Sesión ya iniciada con <b style="text-transform: uppercase">${(userSesion).replace(/['"]+/g, '')}</b>`
-  })
+    icon: "info",
+    html: `Sesión ya iniciada con <b style="text-transform: uppercase">${userSesion.replace(
+      /['"]+/g,
+      ""
+    )}</b>`,
+  });
   setTimeout(function () {
     window.location.href = "./pages/start.html";
   }, 1000);
 }
 //////////
-
 
 //Declaramos variables para el cambio login y Registro
 const loginId = document.querySelector("#login");
@@ -66,21 +67,21 @@ buttonRegister.addEventListener("click", (e) => {
 });
 
 buttonLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    const dataLogin = {
-      user: userLog.value,
-      pass: passLog.value,
-    };
-    login(dataLogin);
-  });
-  
-  function toLogin() {
-    window.location.href = "./";
-  }
+  e.preventDefault();
+  const dataLogin = {
+    user: userLog.value,
+    pass: passLog.value,
+  };
+  login(dataLogin);
+});
 
-  function toStart() {
-    window.location.href = "./pages/start.html";
-  }
+function toLogin() {
+  window.location.href = "./";
+}
+
+function toStart() {
+  window.location.href = "./pages/start.html";
+}
 
 function viewLogin() {
   registerId.style.display = "none";
@@ -120,16 +121,15 @@ const addUsers = async (data) => {
     id: "",
     usuario: data.usuario,
     password: data.password,
-  }
-  console.log("🚀 ~ file: inicio.js ~ line 74 ~ addUsers ~ payload", payload)
+  };
+  console.log("🚀 ~ file: inicio.js ~ line 74 ~ addUsers ~ payload", payload);
   fetch(`https://api-harley-davidson.herokuapp.com/users`, {
     method: "POST",
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    body:JSON.stringify(payload)
-    
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
   }).then(() => {
     Swal.fire({
       icon: "success",
@@ -137,25 +137,27 @@ const addUsers = async (data) => {
       showConfirmButton: false,
       text: "Usuario registrado satisfactoriamente",
     });
-  setTimeout(toLogin, 2000);
+    setTimeout(toLogin, 2000);
   });
 };
 
 const insertUsersDom = (data) => {
   let usersText = document.querySelector("#users-text");
-  let appenUsersText = document.createElement("p");
-  appenUsersText.textContent =
-    "Debes iniciar sesión con estas credenciales o crear un nuevo usuario ===>";
-  usersText.appendChild(appenUsersText);
-
-  let tooltipText = document.querySelector("#tooltip-text");
-  let appenTooltipText = document.createElement("li");
-  appenTooltipText.classList.add("text-tp");
-
-  data.map((element) => {
-    appenTooltipText.innerHTML += `<li><strong>usuario:</strong> ${element.usuario} <strong>password: </strong> ${element.password}</li> `;
-  });
-  tooltipText.appendChild(appenTooltipText);
+  let loadCredentials = document.querySelector(".load-credentials");
+  setTimeout(function () {
+    loadCredentials.style.display = "none";
+    let appenUsersText = document.createElement("p");
+    appenUsersText.textContent =
+      "Debes iniciar sesión con estas credenciales o crear un nuevo usuario ===>";
+    usersText.appendChild(appenUsersText);
+    let tooltipText = document.querySelector("#tooltip-text");
+    let appenTooltipText = document.createElement("li");
+    appenTooltipText.classList.add("text-tp");
+    data.map((element) => {
+      appenTooltipText.innerHTML += `<li><strong>usuario:</strong> ${element.usuario} <strong>password: </strong> ${element.password}</li> `;
+    });
+    tooltipText.appendChild(appenTooltipText);
+  }, 2000);
 };
 
 function register(dataRegister) {
@@ -172,79 +174,77 @@ function register(dataRegister) {
       userReg.disabled = true;
       passReg.disabled = true;
     } else {
-        Swal.fire({
-            icon: "warning",
-            title: "Oops...",
-            showConfirmButton: false,
-            text: "Usuario ya existre en DB!",
-          });
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        showConfirmButton: false,
+        text: "Usuario ya existre en DB!",
+      });
     }
   } else {
     Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        showConfirmButton: false,
-        text: "por favor ingesar usuario i/o password!",
-      });
+      icon: "error",
+      title: "Oops...",
+      showConfirmButton: false,
+      text: "por favor ingesar usuario i/o password!",
+    });
   }
 }
 
 function login(dataLogin) {
-    const { user, pass } = dataLogin;
-    const data = dataUsers[0].map((element) => element);
-    const textLog = document.querySelector(".log-submit");
+  const { user, pass } = dataLogin;
+  const data = dataUsers[0].map((element) => element);
+  const textLog = document.querySelector(".log-submit");
 
-    if (user !== "" && pass !== "") {
-      const isAccount = data.find((element) => element.usuario === user);
-      if (isAccount !== "") {
-        const findAccountApi = isAccount !== undefined && true;
-        const validateAccountApi =
-          findAccountApi &&
-          isAccount.usuario == user &&
-          isAccount.password == pass;
-        if (validateAccountApi) {
-          console.log("inicio Sesion Api");
-          sessionStorage.setItem("sesion", true);
-          sessionStorage.setItem("Account", JSON.stringify(isAccount.usuario));
-          textLog.style.display = "none";
-          spinnerLog.style.display = "block";
-          userLog.disabled = true;
-          passLog.disabled = true;
-          setTimeout(function(){
-            Swal.fire({
-              icon: "success",
-              title: "Great...",
-              showConfirmButton: false,
-              html:
-              `Bienvenido <b style="text-transform: uppercase">${isAccount.usuario}</b>`
-            });
-        },2000);
-         setTimeout(toStart, 3000);
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                showConfirmButton: false,
-                text: "Credenciales invalidas!",
-              });
-        }
+  if (user !== "" && pass !== "") {
+    const isAccount = data.find((element) => element.usuario === user);
+    if (isAccount !== "") {
+      const findAccountApi = isAccount !== undefined && true;
+      const validateAccountApi =
+        findAccountApi &&
+        isAccount.usuario == user &&
+        isAccount.password == pass;
+      if (validateAccountApi) {
+        console.log("inicio Sesion Api");
+        sessionStorage.setItem("sesion", true);
+        sessionStorage.setItem("Account", JSON.stringify(isAccount.usuario));
+        textLog.style.display = "none";
+        spinnerLog.style.display = "block";
+        userLog.disabled = true;
+        passLog.disabled = true;
+        setTimeout(function () {
+          Swal.fire({
+            icon: "success",
+            title: "Great...",
+            showConfirmButton: false,
+            html: `Bienvenido <b style="text-transform: uppercase">${isAccount.usuario}</b>`,
+          });
+        }, 2000);
+        setTimeout(toStart, 3000);
       } else {
-        //toastEvent("error", "no exixten datos de usuarios", 3000,'fa-solid fa-bomb');
         Swal.fire({
-          icon: "warning",
+          icon: "error",
           title: "Oops...",
           showConfirmButton: false,
-          text: "no exixten datos de usuarios!",
+          text: "Credenciales invalidas!",
         });
       }
     } else {
-      //toastEvent("error", "por favor ingesar usuario i/o password", 3000,'fa-solid fa-bomb');
+      //toastEvent("error", "no exixten datos de usuarios", 3000,'fa-solid fa-bomb');
       Swal.fire({
-        icon: "error",
+        icon: "warning",
         title: "Oops...",
         showConfirmButton: false,
-        text: "por favor ingesar usuario i/o password!",
+        text: "no exixten datos de usuarios!",
       });
     }
+  } else {
+    //toastEvent("error", "por favor ingesar usuario i/o password", 3000,'fa-solid fa-bomb');
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      showConfirmButton: false,
+      text: "por favor ingesar usuario i/o password!",
+    });
   }
-  
+}
